@@ -1,0 +1,100 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type=text/javascript>
+        $(function() {
+          $('a#test').bind('click', function() {
+            $.getJSON('/background_process_test',
+                function(data) {
+              //do nothing
+            });
+            return false;
+          });
+        });
+        
+        $(function() {
+          $('a#forwardBtn').bind('click', function() {
+            $.getJSON('/move_forward',
+                function(data) {
+              //do nothing
+            });
+            return false;
+          });
+        });
+        
+        $(function() {
+          $('a#backBtn').bind('click', function() {
+            $.getJSON('/move_back',
+                function(data) {
+              //do nothing
+            });
+            return false;
+          });
+        });
+        
+        $(function() {
+          $('a#leftBtn').bind('click', function() {
+            $.getJSON('/move_left',
+                function(data) {
+              //do nothing
+            });
+            return false;
+          });
+        });
+        
+        $(function() {
+          $('a#rightBtn').bind('click', function() {
+            $.getJSON('/move_right',
+                function(data) {
+              //do nothing
+            });
+            return false;
+          });
+        });
+        
+        $(function() {
+          $('a#resetBtn').bind('click', function() {
+            $.getJSON('/reset',
+                function(data) {
+              //do nothing
+            });
+            return false;
+          });
+        });
+        function showkey(){
+        key = event.keyCode;
+        if (key == 38) $.getJSON('/move_forward',
+                function(data) {
+              //do nothing
+            });
+        else if (key == 40) $.getJSON('/move_back',
+                function(data) {
+              //do nothing
+            });
+        else if (key == 37) $.getJSON('/move_left',
+                function(data) {
+              //do nothing
+            });
+        else if (key == 39) $.getJSON('/move_right',
+                function(data) {
+              //do nothing
+            });
+        
+    }
+    document.onkeydown=showkey;
+</script>
+
+
+<html>
+    <head>
+        <title>Stream</title>
+    </head>
+    <body>
+        <h1>Video Stream</h1>
+        <img src="/video_feed" width="512" height="512"></img>
+        <a href=# id=forwardBtn><button class='btn btn-default' style="width:60px;height:60px;">Forward</button></a>
+        <a href=# id=leftBtn><button class='btn btn-default' style="width:60px;height:60px;">Left</button></a>
+        <a href=# id=backBtn><button class='btn btn-default' style="width:60px;height:60px;">Back</button></a>
+        <a href=# id=rightBtn><button class='btn btn-default' style="width:60px;height:60px;">Right</button></a>
+        <a href=# id=resetBtn><button class='btn btn-default' style="width:60px;height:60px;">Reset</button></a>
+        <!-- <a href=# id=test><button class='btn btn-default'>Test</button></a> -->
+    </body>
+</html>
