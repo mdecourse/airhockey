@@ -17,3 +17,9 @@ https://mde.tw/airhockey/
 
 # Onshape Files:
 [air hockey robot assembly](https://cad.onshape.com/documents/8ce42d1efd45b3bdb98ba700/w/cc6ad7d5bd934e9ffccd77aa/e/cef09b8fe878e693e76eb618)
+
+# Coppeliasim Scene:
+[air hockey_full.ttt](https://github.com/mdecourse/airhockey/blob/master/CoppeliaSim/Air_Hockey_full.ttt)
+
+# Arduino Programs:
+https://github.com/mdecourse/airhockey/tree/master/arduino
