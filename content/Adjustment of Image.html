@@ -52,41 +52,22 @@
         </script>
         
 <script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shCore.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushBash.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushDiff.js"></script>
 <script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushJScript.js"></script>
 <script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushJava.js"></script>
 <script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushPython.js"></script>
 <script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushSql.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushHaxe.js"></script>
 <script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushXml.js"></script>
 <script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushPhp.js"></script>
 <script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushLua.js"></script>
 <script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushCpp.js"></script>
 <script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushCss.js"></script>
 <script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushCSharp.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushDart.js"></script>
 <link type="text/css" rel="stylesheet" href="./../cmsimde/static/syntaxhighlighter/css/shCoreDefault.css"/>
 <script type="text/javascript">SyntaxHighlighter.all();</script>
-
-<!-- for LaTeX equations 暫時不用
-<script src="https://scrum-3.github.io/web/math/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
-<script type="text/javascript">
-init_mathjax = function() {
-    if (window.MathJax) {
-        // MathJax loaded
-        MathJax.Hub.Config({
-            tex2jax: {
-                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-                displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
-            },
-            displayAlign: 'left', // Change this to 'center' to center equations.
-            "HTML-CSS": {
-                styles: {'.MathJax_Display': {"margin": 0}}
-            }
-        });
-        MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
-    }
-}
-init_mathjax();
-</script>
--->
 <!-- 暫時不用
 <script src="./../cmsimde/static/fengari-web.js"></script>
 <script type="text/javascript" src="./../cmsimde/static/Cango-13v08-min.js"></script>
@@ -97,6 +78,11 @@ init_mathjax();
 <script src="https://scrum-3.github.io/web/brython/brython.js"></script>
 <script src="https://scrum-3.github.io/web/brython/brython_stdlib.js"></script>
 -->
+<style>
+img.add_border {
+    border: 3px solid blue;
+}
+</style>
 
 </head>
 <body>
@@ -116,14 +102,14 @@ init_mathjax();
             <header class="site-navbar py-4 bg-white" role="banner">
               <div class="container-fluid">
                 <div class="row align-items-center">
-                <h1>CMSiMDE 網際內容管理系統</h1>
+                <h1>Application Of Image Recognition In Cyber Physical Mechatronic System Design</h1>
                 <div class="pl-4">
                     <form>
                     <input type="text" placeholder="Search" name="q" id="tipue_search_input" pattern=".{2,}" title="At least 2 characters" required>
                     </form>
                 </div>
                   <!-- <div class="col-11 col-xl-2">
-                    <h1 class="mb-0 site-logo"><a href="index.html" class="text-black h2 mb-0">CMSiMDE 網際內容管理系統</a></h1> 
+                    <h1 class="mb-0 site-logo"><a href="index.html" class="text-black h2 mb-0">Application Of Image Recognition In Cyber Physical Mechatronic System Design</a></h1> 
                   </div>
                   -->
                   <div class="col-12 col-md-10 d-none d-xl-block">
@@ -136,7 +122,7 @@ init_mathjax();
                             <li><a href="./../blog/index.html">blog</a></li>
                         </ul>
                       </li>
-                     <li><a href='About.html'>About</a><li><a href='Develop.html'>Develop</a></li>
+                     <li><a href='About.html'>About</a><li><a href='Introduction.html'>Introduction</a><li><a href='Literature Review.html'>Literature Review</a><li class='has-children'><a href='Design Process.html'>Design Process</a><ul class='dropdown'><li><a href='Physical Design.html'>Physical Design</a><li><a href='Program Development.html'>Program Development</a></li></ul><li class='has-children'><a href='Image Recognition.html'>Image Recognition</a><ul class='dropdown'><li><a href='Color Conversion.html'>Color Conversion</a><li><a href='Filtration of Color.html'>Filtration of Color</a><li><a href='Noise Removal Process.html'>Noise Removal Process</a><li><a href='Adjustment of Image.html'>Adjustment of Image</a></li></ul><li class='has-children'><a href='Path Prediction.html'>Path Prediction</a><ul class='dropdown'><li><a href='Translational Velocity of the Air Puck.html'>Translational Velocity of the Air Puck</a><li><a href='Linear Movement.html'>Linear Movement</a><li><a href='Rebound Calculation.html'>Rebound Calculation</a></li></ul><li><a href='Cyber-Physical Mechatronic System.html'>Cyber-Physical Mechatronic System</a></li>
                       </ul>
                 </nav>
               </div>
@@ -147,10 +133,10 @@ init_mathjax();
           </div>
           
         </header>
-    <div id="tipue_search_content">About << <a href='About.html'>Previous</a> <br /><h1>Develop</h1>
-<p><a href="https://github.com/mdecourse/cmsimde">https://github.com/mdecourse/cmsimde</a> 的開發, 可以在一個目錄中放入 cmsimde, 然後將 up_dir 中的內容放到與 cmsimde 目錄同位階的地方, 使用 command 進入 cmsimde 目錄, 執行 python wsgi.py, 就可以啟動, 以瀏覽器 https://localhost:9443 就可以連接, 以 admin 作為管理者密碼, 就可以登入維護內容.</p>
-<p>cmsimde 的開發採用 Leo Editor, 開啟 cmsimde 目錄中的 cmsimde.leo 就可以進行程式修改, 結束後, 若要保留網際內容, 只要將 cmsimde 外部的內容倒回 up_dir 目錄中即可後續對 cmsimde 遠端倉儲進行改版.</p>
-<p>init.py 位於  up_dir 目錄, 可以設定 site_title 與 uwsgi 等變數.</p><br />About << <a href='About.html'>Previous</a> </div>
+    <div id="tipue_search_content">Noise Removal Process << <a href='Noise Removal Process.html'>Previous</a> <a href='Path Prediction.html'>Next</a> >> Path Prediction<br /><h1>Adjustment of Image</h1>
+<pre class="tw-data-text tw-text-large XcVN5d tw-ta" data-placeholder="翻譯" dir="ltr"><span lang="en">The coordinates are obtained from the image,<br/></span><span lang="en">so the x y plane's correction is very important.<br/><br/>Cause the reasons, it's hard to be accurate.<br/>1. </span><span lang="en"><span>It is difficult to make the webcam be perpendicular to the table.</span></span><span lang="en"><br/>2. T</span><span lang="en"><span>he coordinate value is </span></span><span lang="en"><span>easily </span></span><span lang="en"><span>affected by </span></span><span lang="en">the v<span>ibration.</span></span></pre>
+<pre class="tw-data-text tw-text-large XcVN5d tw-ta" data-placeholder="翻譯" dir="ltr"><span lang="en"><span>So we use the yellow point which is on the table to adjust the image.<br/><br/></span><br/></span><span lang="en"><br/><br/></span></pre>
+<p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/IaUenPFhgf4" width="560"></iframe></p><br />Noise Removal Process << <a href='Noise Removal Process.html'>Previous</a> <a href='Path Prediction.html'>Next</a> >> Path Prediction</div>
         
     <!-- footer -->
       <div class="container">
@@ -191,5 +177,13 @@ init_mathjax();
                     </script>
             -->
             <script src="../cmsimde/static/chimper/js/main.js"></script>
-        </body></html>
+        
+<!-- 啟用 LaTeX equations 編輯 -->
+  <!-- <script>
+  MathJax = {
+    tex: {inlineMath: [['$', '$'], ['\(', '\)']]}
+  };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>-->
+    </body></html>
         
