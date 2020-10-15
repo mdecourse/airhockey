@@ -12,35 +12,18 @@ flask_port = 5000
 vrep_port = 19997
 vrep_port2 = 19999
 scene_path = "Y:\tmp2\air_hockey_flask_vrep\Air_Hockey_full.ttt"
+clientID2 = sim.simxStart(flask_ip, vrep_port2, True, True, 5000, 5)
 
 class air_Hockey():
     def __init__(self, clientID):
         kernel = numpy.ones((5,5),numpy.uint8)
         self.clientID = clientID;
         res, self.v0 = sim.simxGetObjectHandle(self.clientID, 'vs1', sim.simx_opmode_oneshot_wait)
-        res, self.v1 = sim.simxGetObjectHandle(self.clientID, 'vs2', sim.simx_opmode_oneshot_wait)
         err,self.Ball_handle=sim.simxGetObjectHandle(self.clientID,'Ball', sim.simx_opmode_oneshot_wait)
         err,self.player2_x_handle=sim.simxGetObjectHandle(self.clientID, 'Com_X_joint', sim.simx_opmode_oneshot_wait)
         err,self.player2_y_handle=sim.simxGetObjectHandle(self.clientID, 'Com_Y_joint', sim.simx_opmode_oneshot_wait)
         err, resolution, image = sim.simxGetVisionSensorImage(self.clientID, self.v0, 0, sim.simx_opmode_streaming)
         print('Received Handles...');
-        
-        self.data_number = 5
-        if self.data_number < 5:
-            self.data_number = 5
-        self.ball_positionX = []
-        self.ball_positionY = []
-        self.wall_X_min = 10
-        self.wall_X_max = 248
-        self.wall_Y_min = 41
-        self.wall_Y_max = 450
-        # 0 = Stop
-        # 1 = Up or Right
-        # 2 = Down or Left
-        self.Ball_DirectionX_Movement = 0
-        self.Ball_DirectionX_Movement_last = 0
-        self.Ball_DirectionY_Movement = 0
-        self.Ball_DirectionY_Movement_last = 0
         
         # Self test the camera
         print('Setting up the camera system...');
@@ -59,45 +42,8 @@ class air_Hockey():
             img = cv2.flip(img,1)
             image_ori = img
             image_ori = cv2.cvtColor(image_ori, cv2.COLOR_BGR2RGB)
-            cv2.putText(image_ori, 'Original', (50,500), cv2.FONT_HERSHEY_SIMPLEX,0.5, (0, 0, 0 ), 1, cv2.LINE_AA)
-            cv2.putText(img, 'Image Recognition', (50,500), cv2.FONT_HERSHEY_SIMPLEX,0.5, (0, 0, 0 ), 1, cv2.LINE_AA)
-            ret_green = color.track_green_object(img)
-            ret_red = color.track_red_object(img)
-            ret_blue = color.track_blue_object(img)
-            img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-            if ret_green and ret_red and ret_blue:
-                #Use Rectangle and Text Mark Green Object
-                Rec_range = 6
-                cv2.rectangle( img, (ret_green[0]-Rec_range, ret_green[1]-Rec_range), (ret_green[0]+Rec_range,ret_green[1]+Rec_range), (0,255,0), 1)
-                cv2.putText(img, 'Green', (ret_green[0]-25, ret_green[1]-10), cv2.FONT_HERSHEY_SIMPLEX,0.5, (0, 255, 0 ), 1, cv2.LINE_AA)
-                #Use Rectangle and Text Mark Red Object
-                cv2.rectangle( img, (ret_red[0]-Rec_range, ret_red[1] - Rec_range), (ret_red[0]+Rec_range,ret_red[1]+Rec_range), (0,0,200), 1)
-                cv2.putText(img, 'Red', (ret_red[0]-15, ret_red[1]-10), cv2.FONT_HERSHEY_SIMPLEX,0.5, (0, 0, 255), 1, cv2.LINE_AA)
-                #Use Rectangle and Text Mark Blue Object
-                cv2.rectangle( img, (ret_blue[0]-Rec_range, ret_blue[1] - Rec_range), (ret_blue[0]+Rec_range,ret_blue[1]+Rec_range), (255,0,0), 1)
-                cv2.putText(img, 'Blue', (ret_blue[0]-20, ret_blue[1]-10), cv2.FONT_HERSHEY_SIMPLEX,0.5, (255, 0, 0 ), 1, cv2.LINE_AA)
-                Rx = ret_red[0] -  ret_blue[0]
-                Ry =- (ret_red[1] -  ret_blue[1])
-                #print(Ry)
-                Rx_v = Rx*0.02
-                if ret_blue[0] <  ret_green[0]:
-                    sim.simxSetJointTargetVelocity( self.clientID, self.player2_x_handle,Rx_v , sim.simx_opmode_oneshot_wait)
-                elif ret_blue[0] >  ret_green[0]:
-                    sim.simxSetJointTargetVelocity( self.clientID, self.player2_x_handle, Rx_v, sim.simx_opmode_oneshot_wait)
-                else:
-                    sim.simxSetJointTargetVelocity( self.clientID, self.player2_x_handle, 0, sim.simx_opmode_oneshot_wait)
-                if Ry >= 10 and Ry <= 100:
-                    sim.simxSetJointTargetVelocity( self.clientID, self.player2_y_handle, 1, sim.simx_opmode_oneshot_wait)
-                else:
-                    sim.simxSetJointTargetVelocity( self.clientID, self.player2_y_handle, -1, sim.simx_opmode_oneshot_wait)
-            else:
-                if not ret_green:
-                    print('not ret_green')
-                if not ret_red:
-                    print('not ret_red')
-                if not ret_blue:
-                    print('not ret_green')
-            self.lastFrame = numpy.hstack((image_ori,img))
+            self.lastFrame = image_ori
+            #self.lastFrame = numpy.hstack((image_ori,img))
             return 1, self.lastFrame;
             
         elif err == sim.simx_return_novalue_flag:
@@ -108,12 +54,14 @@ class air_Hockey():
 app = Flask(__name__)
 
 def startvrep():
+    global clientID2
     sim.simxFinish(-1) # just in case, close all opened connections
     clientID = sim.simxStart(flask_ip, vrep_port, True, True, 5000, 5) # Get the client ID
+    clientID2 = sim.simxStart(flask_ip, vrep_port2, True, True, 5000, 5)
     res=sim.simxLoadScene(clientID, scene_path, 0, sim.simx_opmode_blocking)
     x =sim.simxStartSimulation(clientID,sim.simx_opmode_oneshot_wait) 
 
-    if clientID!=-1:  #check if client connection successful
+    if clientID!=-1 or clientID2 != -1:  #check if client connection successful
         print('Connected to remote API server')
     else:
         print('Connection not successful')
@@ -160,55 +108,50 @@ def showimage():
 def index():
     # render the template (below) that will use JavaScript to read the stream
     return render_template('index.html')
-    
+
 @app.route('/move_forward')
 def move_forward():
-    clientID2 = sim.simxStart(flask_ip, vrep_port2, True, True, 5000, 5) # Get the client ID
-    print(clientID2)
+    #t1 = time.time()
+    global clientID2
     errorCode,player_y_handle=sim.simxGetObjectHandle(clientID2, 'Pla_Y_joint', sim.simx_opmode_oneshot_wait)
     sim.simxSetJointTargetVelocity( clientID2, player_y_handle, -1, sim.simx_opmode_oneshot_wait)
-    sim.simxFinish(clientID2)
     print ("move_forward")
+    #print(time.time()-t1)
     return ("nothing")
     
 @app.route('/move_back')
 def move_back():
-    clientID2 = sim.simxStart(flask_ip, vrep_port2, True, True, 5000, 5) # Get the client ID
+    global clientID2
     errorCode,player_y_handle=sim.simxGetObjectHandle(clientID2, 'Pla_Y_joint', sim.simx_opmode_oneshot_wait)
     sim.simxSetJointTargetVelocity( clientID2, player_y_handle, 1, sim.simx_opmode_oneshot_wait)
-    sim.simxFinish(clientID2)
     print ("move_back")
     return ("nothing")
     
 @app.route('/move_left')
 def move_left():
-    clientID2 = sim.simxStart(flask_ip, vrep_port2, True, True, 5000, 5) # Get the client ID
+    global clientID2
     errorCode,player_x_handle=sim.simxGetObjectHandle(clientID2, 'Pla_X_joint', sim.simx_opmode_oneshot_wait)
     sim.simxSetJointTargetVelocity( clientID2, player_x_handle, 1, sim.simx_opmode_oneshot_wait)
-    sim.simxFinish(clientID2)
     print ("move_left")
     return ("nothing")
     
 @app.route('/move_right')
 def move_right():
-    clientID2 = sim.simxStart(flask_ip, vrep_port2, True, True, 5000, 5) # Get the client ID
+    global clientID2
     errorCode,player_x_handle=sim.simxGetObjectHandle(clientID2, 'Pla_X_joint', sim.simx_opmode_oneshot_wait)
     sim.simxSetJointTargetVelocity( clientID2, player_x_handle, -1, sim.simx_opmode_oneshot_wait)
-    sim.simxFinish(clientID2)
     print ("move_right")
     return ("nothing")
     
 @app.route('/reset')
 def reset():
-    clientID2 = sim.simxStart(flask_ip, vrep_port2, True, True, 5000, 5) # Get the client ID
+    global clientID2
     sim.simxStopSimulation(clientID2,sim.simx_opmode_oneshot_wait)
     time.sleep(1)
     sim.simxStartSimulation(clientID2,sim.simx_opmode_oneshot_wait)
     time.sleep(0.5)
-    sim.simxFinish(clientID2)
     print ("reset")
     return ("nothing")
     
 if __name__ == '__main__':
     app.run(host=flask_ip, port=flask_port)
-    
