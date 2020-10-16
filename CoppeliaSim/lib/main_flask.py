@@ -14,7 +14,8 @@ vrep_port2 = 19999
 scene_path = "Y:\tmp2\air_hockey_flask_vrep\Air_Hockey_full.ttt"
 game_mode = 0
 clientID2 = sim.simxStart(flask_ip, vrep_port2, True, True, 5000, 5)
-
+errorCode,player_x_handle=sim.simxGetObjectHandle(clientID2, 'Pla_X_joint', sim.simx_opmode_oneshot_wait)
+errorCode,player_y_handle=sim.simxGetObjectHandle(clientID2, 'Pla_Y_joint', sim.simx_opmode_oneshot_wait)
 class air_Hockey():
     def __init__(self, clientID):
         kernel = numpy.ones((5,5),numpy.uint8)
@@ -42,11 +43,8 @@ class air_Hockey():
             img.resize([resolution[1],resolution[0],3])
             img = imutils.rotate_bound(img, 180)
             img = cv2.flip(img,1)
-            image_ori = img
-            image_ori = cv2.cvtColor(image_ori, cv2.COLOR_BGR2RGB)
             
             
-            cv2.putText(image_ori, 'Original', (50,500), cv2.FONT_HERSHEY_SIMPLEX,0.5, (0, 0, 0 ), 1, cv2.LINE_AA)
             cv2.putText(img, 'Image Recognition', (50,500), cv2.FONT_HERSHEY_SIMPLEX,0.5, (0, 0, 0 ), 1, cv2.LINE_AA)
             ret_green = color.track_green_object(img)
             ret_red = color.track_red_object(img)
@@ -67,24 +65,61 @@ class air_Hockey():
                     Rx = ret_red[0] -  ret_blue[0]
                     Ry =- (ret_red[1] -  ret_blue[1])
                     #print(Ry)
-                    Rx_v = Rx*0.02
-                    if ret_blue[0] <  ret_green[0]:
+                    Rx_v = Rx*0.01
+                    if ret_blue[0] <  ret_red[0]:
                         sim.simxSetJointTargetVelocity( self.clientID, self.player2_x_handle,Rx_v , sim.simx_opmode_oneshot_wait)
-                    elif ret_blue[0] >  ret_green[0]:
+                    elif ret_blue[0] >  ret_red[0]:
                         sim.simxSetJointTargetVelocity( self.clientID, self.player2_x_handle, Rx_v, sim.simx_opmode_oneshot_wait)
                     else:
                         sim.simxSetJointTargetVelocity( self.clientID, self.player2_x_handle, 0, sim.simx_opmode_oneshot_wait)
-                    if Ry >= 10 and Ry <= 100:
+                    if Ry >= 5 and Ry <= 50:
                         sim.simxSetJointTargetVelocity( self.clientID, self.player2_y_handle, 1, sim.simx_opmode_oneshot_wait)
                     else:
                         sim.simxSetJointTargetVelocity( self.clientID, self.player2_y_handle, -1, sim.simx_opmode_oneshot_wait)
+                        
+                elif game_mode ==2:
+                    global clientID2
+                    global player_x_handle
+                    global player_x_handle
+                    #errorCode,player_x_handle=sim.simxGetObjectHandle(clientID2, 'Pla_X_joint', sim.simx_opmode_oneshot_wait)
+                    #errorCode,player_y_handle=sim.simxGetObjectHandle(clientID2, 'Pla_Y_joint', sim.simx_opmode_oneshot_wait)
+                    Rx = ret_red[0] -  ret_blue[0]
+                    Ry =- (ret_red[1] -  ret_blue[1])
+                    Rx_v = Rx*0.01
+                    Gx = (ret_green[0] -  ret_blue[0])
+                    Gy = (ret_green[1] -  ret_blue[1])
+                    Gx_v = Gx*0.01
+                    if ret_blue[0] <  ret_red[0]:
+                        sim.simxSetJointTargetVelocity( self.clientID, self.player2_x_handle,Rx_v , sim.simx_opmode_oneshot_wait)
+                    elif ret_blue[0] >  ret_red[0]:
+                        sim.simxSetJointTargetVelocity( self.clientID, self.player2_x_handle, Rx_v, sim.simx_opmode_oneshot_wait)
+                    else:
+                        sim.simxSetJointTargetVelocity( self.clientID, self.player2_x_handle, 0, sim.simx_opmode_oneshot_wait)
+                    if ret_blue[0] <  ret_green[0]:
+                        sim.simxSetJointTargetVelocity( self.clientID, player_x_handle,Gx_v , sim.simx_opmode_oneshot_wait)
+                    elif ret_blue[0] >  ret_green[0]:
+                        sim.simxSetJointTargetVelocity( self.clientID, player_x_handle, Gx_v, sim.simx_opmode_oneshot_wait)
+                    else:
+                        sim.simxSetJointTargetVelocity( self.clientID, player_x_handle, 0, sim.simx_opmode_oneshot_wait)
+                    if Ry >= 5 and Ry <= 50:
+                        sim.simxSetJointTargetVelocity( self.clientID, self.player2_y_handle, 0.5, sim.simx_opmode_oneshot_wait)
+                    else:
+                        sim.simxSetJointTargetVelocity( self.clientID, self.player2_y_handle, -0.5, sim.simx_opmode_oneshot_wait)
+                    if Gy >= 5 and Gy <= 50:
+                        sim.simxSetJointTargetVelocity( self.clientID, player_y_handle, -0.5, sim.simx_opmode_oneshot_wait)
+                    else:
+                        sim.simxSetJointTargetVelocity( self.clientID, player_y_handle, 0.5, sim.simx_opmode_oneshot_wait)
             else:
                 if not ret_green:
                     print('not ret_green')
                 if not ret_red:
                     print('not ret_red')
                 if not ret_blue:
-                    print('not ret_green')
+                    print('not ret_blue')
+                    sim.simxStopSimulation(clientID2,sim.simx_opmode_oneshot_wait)
+                    time.sleep(1)
+                    sim.simxStartSimulation(clientID2,sim.simx_opmode_oneshot_wait)
+                    time.sleep(0.5)
             
             self.lastFrame = img
             #self.lastFrame = numpy.hstack((image_ori,img))
