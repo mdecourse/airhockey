@@ -59,6 +59,27 @@
             return false;
           });
         });
+        
+        $(function() {
+          $('#mode_select').change( function() {
+          var mode_num = ($("#mode_select option:selected").val());
+          
+          if (mode_num==0) $.getJSON('/mode_0',
+                function(data) {
+              //do nothing
+            });
+            else if (mode_num==1) $.getJSON('/mode_1',
+                function(data) {
+              //do nothing
+            });
+            else if (mode_num==2) $.getJSON('/mode_2',
+                function(data) {
+              //do nothing
+            });
+            return false;
+          });
+        });
+        
         function showkey(){
         key = event.keyCode;
         if (key == 38) $.getJSON('/move_forward',
@@ -89,7 +110,14 @@
     </head>
     <body>
         <h1>Video Stream</h1>
-        <img src="/video_feed" width="512" height="512"></img>
+        <h3>對打模式
+        <select id = "mode_select" name="mode">
+        <option value  = "0" > </option>
+        <option value  = "1">Player vs Computer</option>
+        <option value  = "2">Computer_1 vs Computer_2</option>
+        </select></h3>
+        
+        <img src="/video_feed" width="256" height="512"></img>
         <a href=# id=forwardBtn><button class='btn btn-default' style="width:60px;height:60px;">Forward</button></a>
         <a href=# id=leftBtn><button class='btn btn-default' style="width:60px;height:60px;">Left</button></a>
         <a href=# id=backBtn><button class='btn btn-default' style="width:60px;height:60px;">Back</button></a>

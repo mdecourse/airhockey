@@ -7,11 +7,12 @@ from PIL import Image as I
 import ColorRecognition as color
 from flask import Flask, render_template, send_from_directory, Response
 
-flask_ip = "140.130.17.108"
+flask_ip = "127.0.0.1"
 flask_port = 5000
 vrep_port = 19997
 vrep_port2 = 19999
 scene_path = "Y:\tmp2\air_hockey_flask_vrep\Air_Hockey_full.ttt"
+game_mode = 0
 clientID2 = sim.simxStart(flask_ip, vrep_port2, True, True, 5000, 5)
 
 class air_Hockey():
@@ -34,6 +35,7 @@ class air_Hockey():
         print('Camera setup successful.')
    
     def get_image(self):
+        global game_mode
         err, resolution, image = sim.simxGetVisionSensorImage(self.clientID, self.v0, 0, sim.simx_opmode_streaming)
         if err == sim.simx_return_ok:
             img = numpy.array(image,dtype=numpy.uint8)
@@ -42,7 +44,49 @@ class air_Hockey():
             img = cv2.flip(img,1)
             image_ori = img
             image_ori = cv2.cvtColor(image_ori, cv2.COLOR_BGR2RGB)
-            self.lastFrame = image_ori
+            
+            
+            cv2.putText(image_ori, 'Original', (50,500), cv2.FONT_HERSHEY_SIMPLEX,0.5, (0, 0, 0 ), 1, cv2.LINE_AA)
+            cv2.putText(img, 'Image Recognition', (50,500), cv2.FONT_HERSHEY_SIMPLEX,0.5, (0, 0, 0 ), 1, cv2.LINE_AA)
+            ret_green = color.track_green_object(img)
+            ret_red = color.track_red_object(img)
+            ret_blue = color.track_blue_object(img)
+            img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+            if ret_green and ret_red and ret_blue:
+                #Use Rectangle and Text Mark Green Object
+                Rec_range = 6
+                cv2.rectangle( img, (ret_green[0]-Rec_range, ret_green[1]-Rec_range), (ret_green[0]+Rec_range,ret_green[1]+Rec_range), (0,255,0), 1)
+                cv2.putText(img, 'Pla', (ret_green[0]-10, ret_green[1]+20), cv2.FONT_HERSHEY_SIMPLEX,0.5, (0, 255, 0 ), 1, cv2.LINE_AA)
+                #Use Rectangle and Text Mark Red Object
+                cv2.rectangle( img, (ret_red[0]-Rec_range, ret_red[1] - Rec_range), (ret_red[0]+Rec_range,ret_red[1]+Rec_range), (0,0,200), 1)
+                cv2.putText(img, 'Com', (ret_red[0]-15, ret_red[1]-10), cv2.FONT_HERSHEY_SIMPLEX,0.5, (0, 0, 255), 1, cv2.LINE_AA)
+                #Use Rectangle and Text Mark Blue Object
+                cv2.rectangle( img, (ret_blue[0]-Rec_range, ret_blue[1] - Rec_range), (ret_blue[0]+Rec_range,ret_blue[1]+Rec_range), (255,0,0), 1)
+                cv2.putText(img, 'Ball', (ret_blue[0]-20, ret_blue[1]-10), cv2.FONT_HERSHEY_SIMPLEX,0.5, (255, 0, 0 ), 1, cv2.LINE_AA)
+                if game_mode ==1:
+                    Rx = ret_red[0] -  ret_blue[0]
+                    Ry =- (ret_red[1] -  ret_blue[1])
+                    #print(Ry)
+                    Rx_v = Rx*0.02
+                    if ret_blue[0] <  ret_green[0]:
+                        sim.simxSetJointTargetVelocity( self.clientID, self.player2_x_handle,Rx_v , sim.simx_opmode_oneshot_wait)
+                    elif ret_blue[0] >  ret_green[0]:
+                        sim.simxSetJointTargetVelocity( self.clientID, self.player2_x_handle, Rx_v, sim.simx_opmode_oneshot_wait)
+                    else:
+                        sim.simxSetJointTargetVelocity( self.clientID, self.player2_x_handle, 0, sim.simx_opmode_oneshot_wait)
+                    if Ry >= 10 and Ry <= 100:
+                        sim.simxSetJointTargetVelocity( self.clientID, self.player2_y_handle, 1, sim.simx_opmode_oneshot_wait)
+                    else:
+                        sim.simxSetJointTargetVelocity( self.clientID, self.player2_y_handle, -1, sim.simx_opmode_oneshot_wait)
+            else:
+                if not ret_green:
+                    print('not ret_green')
+                if not ret_red:
+                    print('not ret_red')
+                if not ret_blue:
+                    print('not ret_green')
+            
+            self.lastFrame = img
             #self.lastFrame = numpy.hstack((image_ori,img))
             return 1, self.lastFrame;
             
@@ -151,6 +195,27 @@ def reset():
     sim.simxStartSimulation(clientID2,sim.simx_opmode_oneshot_wait)
     time.sleep(0.5)
     print ("reset")
+    return ("nothing")
+    
+@app.route('/mode_0')
+def mode_0():
+    global game_mode
+    game_mode = 0
+    print("mode = 0")
+    return ("nothing")
+    
+@app.route('/mode_1')
+def mode_1():
+    global game_mode
+    game_mode = 1
+    print("mode = 1")
+    return ("nothing")
+
+@app.route('/mode_2')
+def mode_2():
+    global game_mode
+    game_mode = 2
+    print("mode = 1")
     return ("nothing")
     
 if __name__ == '__main__':
