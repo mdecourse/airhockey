@@ -134,7 +134,22 @@ img.add_border {
           
         </header>
     <div id="tipue_search_content">Path Prediction << <a href='Path Prediction.html'>Previous</a> <a href='Linear Movement.html'>Next</a> >> Linear Movement<br /><h1>Translational Velocity of the Air Puck</h1>
-<br />Path Prediction << <a href='Path Prediction.html'>Previous</a> <a href='Linear Movement.html'>Next</a> >> Linear Movement</div>
+<p></p>
+<p>It takes about 60 milliseconds for the image input to the end of the processing to be calculated by the program itself. Therefore, the number of frames of the processed image is about 17 frames per second. Using the program to calculate the time difference between the processing and the position change of the before and after images, the unit time movement can be obtained. The number of pixel grids is calculated by marking points on the surroundings of the ball table, calculating the length of the unit pixel, and converting the two data obtained to obtain the moving speed of the air puck.</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">import time
+
+start_time = time.time()
+
+'''
+here is Image Recognition and other code
+'''
+dist = ball last position to now postiton distance
+end_time = time.time()
+dt = end_time - start_time
+
+ball_velocity = dist/dt</pre>
+<p></p>
+<p></p><br />Path Prediction << <a href='Path Prediction.html'>Previous</a> <a href='Linear Movement.html'>Next</a> >> Linear Movement</div>
         
     <!-- footer -->
       <div class="container">
