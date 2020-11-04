@@ -12,7 +12,7 @@
 </v>
 <v t="leo.20180902120523.1"><vh>編輯 reveal</vh>
 <v t="leo.20180902120523.2"><vh>@path ./../reveal</vh>
-<v t="leo.20200818165234.1"><vh>@clean index.html</vh>
+<v t="leo.20200818165234.1"><vh>@clean default.html</vh>
 <v t="leo.20200818165301.1"><vh>html</vh>
 <v t="leo.20200818165438.1"><vh>head</vh></v>
 <v t="leo.20200818165413.1"><vh>body</vh>
@@ -67,10 +67,480 @@
 </v>
 </v>
 </v>
+<v t="40623128.20201103115327.1"><vh>@clean index.html</vh>
+<v t="40623128.20201103115327.2"><vh>html</vh>
+<v t="40623128.20201103115327.3"><vh>head</vh></v>
+<v t="40623128.20201103115327.4"><vh>body</vh>
+<v t="40623128.20201103115327.5"><vh>reveal div</vh>
+<v t="40623128.20201103115327.6"><vh>slides div</vh>
+<v t="40623128.20201103115327.7"><vh>封面</vh>
+<v t="40623128.20201103121839.1"><vh>side1</vh></v>
+</v>
+<v t="40623128.20201103134543.1"><vh>Agenda-Introduction</vh>
+<v t="40623128.20201103161532.1"><vh>Agenda</vh>
+<v t="40623128.20201103161532.2"><vh>side1</vh></v>
+</v>
+<v t="40623128.20201103134836.1"><vh>Introduction</vh>
+<v t="40623128.20201103134836.2"><vh>side1</vh></v>
+</v>
+</v>
+<v t="40623128.20201103161841.1"><vh>Agenda-Literature Review</vh>
+<v t="40623128.20201103161841.2"><vh>Agenda</vh>
+<v t="40623128.20201103161841.3"><vh>side1</vh></v>
+</v>
+<v t="40623128.20201103162009.1"><vh>Literature Review</vh>
+<v t="40623128.20201103162009.2"><vh>side1</vh></v>
+</v>
+</v>
+<v t="40623128.20201103162217.1"><vh>Agenda-Overall design framework</vh>
+<v t="40623128.20201103162217.2"><vh>Agenda</vh>
+<v t="40623128.20201103162217.3"><vh>side1</vh></v>
+</v>
+<v t="40623128.20201103162217.4"><vh>Overall design framework</vh>
+<v t="40623128.20201103162217.5"><vh>side1</vh></v>
+</v>
+</v>
+<v t="40623128.20201104134352.1"><vh>Agenda-HoverPuck</vh>
+<v t="40623128.20201104134352.2"><vh>Agenda</vh>
+<v t="40623128.20201104134352.3"><vh>side1</vh></v>
+</v>
+<v t="40623128.20201104134352.4"><vh>HoverPuck</vh>
+<v t="40623128.20201104134352.5"><vh>side1</vh></v>
+</v>
+</v>
+<v t="40623128.20201104140515.1"><vh>Agenda-Software–Onshape &amp; CoppeliaSim</vh>
+<v t="40623128.20201104140515.2"><vh>Agenda</vh>
+<v t="40623128.20201104140515.3"><vh>side1</vh></v>
+</v>
+<v t="40623128.20201104140515.4"><vh>Software –Onshape</vh>
+<v t="40623128.20201104140515.5"><vh>side1</vh></v>
+</v>
+<v t="40623128.20201104140849.1"><vh>Software –CoppeliaSim</vh>
+<v t="40623128.20201104140849.2"><vh>side1</vh></v>
+</v>
+</v>
+<v t="40623128.20201104141213.1"><vh>Agenda-Programing</vh>
+<v t="40623128.20201104141213.2"><vh>Agenda</vh>
+<v t="40623128.20201104141213.3"><vh>side1</vh></v>
+</v>
+<v t="40623128.20201104141213.4"><vh>Image Recognition</vh>
+<v t="40623128.20201104141213.5"><vh>side1</vh></v>
+</v>
+<v t="40623128.20201104141213.6"><vh>Image correction</vh>
+<v t="40623128.20201104141213.7"><vh>side1</vh></v>
+</v>
+<v t="40623128.20201104171836.1"><vh>Translational Velocity</vh>
+<v t="40623128.20201104171836.2"><vh>side1</vh></v>
+</v>
+</v>
+<v t="40623128.20201104173210.1"><vh>Agenda-Cyber-Physical Mechatronic System</vh>
+<v t="40623128.20201104173210.2"><vh>Agenda</vh>
+<v t="40623128.20201104173210.3"><vh>side1</vh></v>
+</v>
+<v t="40623128.20201104173210.4"><vh>Cyber-Physical Mechatronic System</vh>
+<v t="40623128.20201104173210.5"><vh>side1</vh></v>
+</v>
+<v t="40623128.20201104173449.1"><vh>Cyber-Physical Mechatronic System</vh>
+<v t="40623128.20201104173449.2"><vh>side1</vh></v>
+</v>
+</v>
+<v t="40623128.20201104173727.1"><vh>Agenda-Conclusions</vh>
+<v t="40623128.20201104173727.2"><vh>Agenda</vh>
+<v t="40623128.20201104173727.3"><vh>side1</vh></v>
+</v>
+<v t="40623128.20201104173727.4"><vh>Conclusions</vh>
+<v t="40623128.20201104173727.5"><vh>side1</vh></v>
+</v>
+</v>
+</v>
+</v>
+</v>
+</v>
+</v>
 </v>
 </v>
 </vnodes>
 <tnodes>
+<t tx="40623128.20201103115327.1">@language xml
+@tabwidth -4
+@others
+</t>
+<t tx="40623128.20201103115327.2">&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+@others
+&lt;/html&gt;
+</t>
+<t tx="40623128.20201103115327.3">&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+
+    &lt;title&gt;Application Of Image Recognition In Cyber Physical Mechatronic System Design&lt;/title&gt;
+
+    &lt;meta name="description" content="A framework for easily creating beautiful presentations using HTML"&gt;
+    &lt;meta name="author" content="Hakim El Hattab"&gt;
+
+    &lt;meta name="apple-mobile-web-app-capable" content="yes"&gt;
+    &lt;meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"&gt;
+
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+
+    &lt;link rel="stylesheet" href="dist/reset.css"&gt;
+    &lt;link rel="stylesheet" href="dist/reveal.css"&gt;
+    &lt;link rel="stylesheet" href="dist/theme/beige.css" id="theme"&gt;
+
+    &lt;!-- Theme used for syntax highlighting of code --&gt;
+    &lt;link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme"&gt;
+&lt;/head&gt;
+</t>
+<t tx="40623128.20201103115327.4">&lt;body&gt;
+@others
+    &lt;script src="dist/reveal.js"&gt;&lt;/script&gt;
+    &lt;script src="plugin/zoom/zoom.js"&gt;&lt;/script&gt;
+    &lt;script src="plugin/notes/notes.js"&gt;&lt;/script&gt;
+    &lt;script src="plugin/search/search.js"&gt;&lt;/script&gt;
+    &lt;script src="plugin/markdown/markdown.js"&gt;&lt;/script&gt;
+    &lt;script src="plugin/highlight/highlight.js"&gt;&lt;/script&gt;
+    &lt;script&gt;
+
+        // Also available as an ES module, see:
+        // https://revealjs.com/initialization/
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            center: true,
+            hash: true,
+
+            // Learn about plugins: https://revealjs.com/plugins/
+            plugins: [ RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight ]
+        });
+
+    &lt;/script&gt;
+&lt;/body&gt;
+</t>
+<t tx="40623128.20201103115327.5">&lt;div class="reveal"&gt;
+    @others
+&lt;/div&gt;
+</t>
+<t tx="40623128.20201103115327.6">&lt;!-- Any section element inside of this container is displayed as a slide --&gt;
+&lt;div class="slides"&gt;
+@others
+&lt;/div&gt;
+</t>
+<t tx="40623128.20201103115327.7">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+</t>
+<t tx="40623128.20201103121839.1">### Application Of Image Recognition In Cyber Physical Mechatronic System Design
+
+&lt;small&gt;
+National Formosa University
+
+Dept. of Mechanical Design Engineering
+
+Huaching Chang
+&lt;/small&gt;
+</t>
+<t tx="40623128.20201103134543.1">&lt;section&gt;
+@others
+&lt;/section&gt;
+
+</t>
+<t tx="40623128.20201103134836.1">&lt;section&gt;
+@others
+&lt;/section&gt;
+
+</t>
+<t tx="40623128.20201103134836.2">&lt;h3&gt;Introduction&lt;/h3&gt;
+
+&lt;img src="../images/introduction1.gif" alt="introduction1" height="400"&gt;
+
+&lt;img src="../images/introduction2.gif" alt="introduction2" height="400"&gt;</t>
+<t tx="40623128.20201103161532.1">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+</t>
+<t tx="40623128.20201103161532.2">## Agenda
+
+* &lt;span style="color:red"&gt;Introduction&lt;/span&gt;
+* Literature Review 
+* Overall design framework
+* HoverPuck
+* Software – Onshape &amp; CoppeliaSim 
+* Programing 
+* Cyber-Physical Mechatronic System 
+* Conclusions 
+
+</t>
+<t tx="40623128.20201103161841.1">&lt;section&gt;
+@others
+&lt;/section&gt;
+
+</t>
+<t tx="40623128.20201103161841.2">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+</t>
+<t tx="40623128.20201103161841.3">## Agenda
+
+* Introduction
+* &lt;span style="color:red"&gt;Literature Review&lt;/span&gt;
+* Overall design framework
+* HoverPuck
+* Software – Onshape &amp; CoppeliaSim 
+* Programing 
+* Cyber-Physical Mechatronic System 
+* Conclusions 
+
+</t>
+<t tx="40623128.20201103162009.1">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+</t>
+<t tx="40623128.20201103162009.2">## Literature Review
+
+
+</t>
+<t tx="40623128.20201103162217.1">&lt;section&gt;
+@others
+&lt;/section&gt;
+
+</t>
+<t tx="40623128.20201103162217.2">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+</t>
+<t tx="40623128.20201103162217.3">## Agenda
+
+* Introduction
+* Literature Review
+* &lt;span style="color:red"&gt;Overall design framework&lt;/span&gt;
+* HoverPuck
+* Software – Onshape &amp; CoppeliaSim 
+* Programing 
+* Cyber-Physical Mechatronic System 
+* Conclusions 
+
+</t>
+<t tx="40623128.20201103162217.4">&lt;section&gt;
+@others
+&lt;/section&gt;</t>
+<t tx="40623128.20201103162217.5">
+&lt;h3&gt;Overall design framework&lt;/h3&gt;
+
+&lt;img src="../images/Overall design framework.png" alt="Overall design framework" height="500"&gt;
+
+
+</t>
+<t tx="40623128.20201104134352.1">&lt;section&gt;
+@others
+&lt;/section&gt;
+
+</t>
+<t tx="40623128.20201104134352.2">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+</t>
+<t tx="40623128.20201104134352.3">## Agenda
+
+* Introduction
+* Literature Review
+* Overall design framework
+* &lt;span style="color:red"&gt;HoverPuck&lt;/span&gt;
+* Software – Onshape &amp; CoppeliaSim 
+* Programing 
+* Cyber-Physical Mechatronic System 
+* Conclusions 
+
+</t>
+<t tx="40623128.20201104134352.4">&lt;section&gt;
+@others
+&lt;/section&gt;</t>
+<t tx="40623128.20201104134352.5">&lt;h3&gt;HoverPuck&lt;/h3&gt;
+
+&lt;img src="../images/HoverPuck.png" alt="Overall design framework" height="200"&gt;
+&lt;img src="../images/HoverPuck1.png" alt="Overall design framework" height="200"&gt;
+&lt;img src="../images/HoverPuck2.png" alt="Overall design framework" height="200"&gt;
+
+
+</t>
+<t tx="40623128.20201104140515.1">&lt;section&gt;
+@others
+&lt;/section&gt;
+
+</t>
+<t tx="40623128.20201104140515.2">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+</t>
+<t tx="40623128.20201104140515.3">## Agenda
+
+* Introduction
+* Literature Review
+* Overall design framework
+* HoverPuck
+* &lt;span style="color:red"&gt;Software –Onshape &amp; CoppeliaSim &lt;/span&gt;
+* Programing 
+* Cyber-Physical Mechatronic System 
+* Conclusions 
+
+</t>
+<t tx="40623128.20201104140515.4">&lt;section&gt;
+@others
+&lt;/section&gt;</t>
+<t tx="40623128.20201104140515.5">&lt;h3&gt;Software –Onshape&lt;/h3&gt;
+
+&lt;img src="../images/Software –Onshape.png" alt="Overall design framework"&gt;
+
+</t>
+<t tx="40623128.20201104140849.1">&lt;section&gt;
+@others
+&lt;/section&gt;</t>
+<t tx="40623128.20201104140849.2">&lt;h3&gt;Software –CoppeliaSim&lt;/h3&gt;
+
+&lt;img src="../images/Software –CoppeliaSim.png" alt="Overall design framework"&gt;
+
+</t>
+<t tx="40623128.20201104141213.1">&lt;section&gt;
+@others
+&lt;/section&gt;
+
+</t>
+<t tx="40623128.20201104141213.2">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+</t>
+<t tx="40623128.20201104141213.3">## Agenda
+
+* Introduction
+* Literature Review
+* Overall design framework
+* HoverPuck
+* Software –Onshape &amp; CoppeliaSim
+* &lt;span style="color:red"&gt;Programing&lt;/span&gt;
+* Cyber-Physical Mechatronic System 
+* Conclusions 
+
+</t>
+<t tx="40623128.20201104141213.4">&lt;section&gt;
+@others
+&lt;/section&gt;</t>
+<t tx="40623128.20201104141213.5">&lt;h3&gt;Image Recognition&lt;/h3&gt;
+
+&lt;img src="../images/Image Recognition .png" alt="Image Recognition"&gt;
+</t>
+<t tx="40623128.20201104141213.6">&lt;section&gt;
+@others
+&lt;/section&gt;</t>
+<t tx="40623128.20201104141213.7">&lt;h3&gt;Image Correction&lt;/h3&gt;
+
+&lt;iframe src="../images/Image correction.mp4" scrolling="no" frameborder="0" width="100%" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"&gt;&lt;/iframe&gt;</t>
+<t tx="40623128.20201104171836.1">&lt;section&gt;
+@others
+&lt;/section&gt;</t>
+<t tx="40623128.20201104171836.2">&lt;h3&gt;Translational Velocity of the Air Puck &lt;/h3&gt;
+
+&lt;img src="../images/Velocity1.png" alt="Translational Velocity of the Air Puck" height="500"&gt;
+&lt;img src="../images/Velocity2.png" alt="Translational Velocity of the Air Puck" height="500"&gt;</t>
+<t tx="40623128.20201104173210.1">&lt;section&gt;
+@others
+&lt;/section&gt;
+
+</t>
+<t tx="40623128.20201104173210.2">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+</t>
+<t tx="40623128.20201104173210.3">## Agenda
+
+* Introduction
+* Literature Review
+* Overall design framework
+* HoverPuck
+* Software –Onshape &amp; CoppeliaSim
+* Programing
+* &lt;span style="color:red"&gt;Cyber-Physical Mechatronic System &lt;/span&gt;
+* Conclusions 
+
+</t>
+<t tx="40623128.20201104173210.4">&lt;section&gt;
+@others
+&lt;/section&gt;</t>
+<t tx="40623128.20201104173210.5">&lt;h3&gt;Cyber-Physical Mechatronic System&lt;/h3&gt;
+
+&lt;img src="../images/Cyber-Physical Mechatronic System.png" alt="Image Recognition"&gt;
+</t>
+<t tx="40623128.20201104173449.1">&lt;section&gt;
+@others
+&lt;/section&gt;</t>
+<t tx="40623128.20201104173449.2">&lt;h3&gt;Cyber-Physical Mechatronic System&lt;/h3&gt;
+
+&lt;img src="../images/Cyber-Physical Mechatronic System.gif" alt="Cyber-Physical Mechatronic System" height="500"&gt;
+</t>
+<t tx="40623128.20201104173727.1">&lt;section&gt;
+@others
+&lt;/section&gt;
+
+</t>
+<t tx="40623128.20201104173727.2">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+</t>
+<t tx="40623128.20201104173727.3">## Agenda
+
+* Introduction
+* Literature Review
+* Overall design framework
+* HoverPuck
+* Software –Onshape &amp; CoppeliaSim
+* Programing
+* Cyber-Physical Mechatronic System
+* &lt;span style="color:red"&gt;Conclusions&lt;/span&gt; 
+
+</t>
+<t tx="40623128.20201104173727.4">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+</t>
+<t tx="40623128.20201104173727.5">### Conclusions
+
+[Onshape assembly](https://cad.onshape.com/documents/8ce42d1efd45b3bdb98ba700/w/cc6ad7d5bd934e9ffccd77aa/e/cef09b8fe878e693e76eb618)
+
+[Coppeliasim Scene](https://github.com/mdecourse/airhockey/blob/master/CoppeliaSim/Air_Hockey_full.ttt)
+
+[Github repository](https://github.com/mdecourse/airhockey) 
+</t>
 <t tx="leo.20180902120523.1"></t>
 <t tx="leo.20180902120523.2"></t>
 <t tx="leo.20180902120538.1"></t>
